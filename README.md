@@ -7,55 +7,118 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About LaraveSistema de Pedidos - Montink
+Sobre o Projeto
+Este é um sistema de pedidos desenvolvido com Laravel, utilizando MySQL como banco de dados. O sistema inclui funcionalidades para:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Gerenciamento de produtos com variações
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Controle de estoque
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Processamento de pedidos
 
-## Learning Laravel
+Aplicação de cupons de desconto
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Cálculo automático de frete
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Pré-requisitos
+Antes de começar, certifique-se de ter instalado em sua máquina:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+PHP 8.0 ou superior
 
-## Laravel Sponsors
+Composer
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+MySQL 5.7 ou superior
 
-### Premium Partners
+Node.js (opcional para assets frontend)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Instalação
+Siga estes passos para configurar o projeto localmente:
 
-## Contributing
+Clone o repositório:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+bash
+git clone https://github.com/seu-usuario/montink.git
+cd montink
+Instale as dependências do PHP:
 
-## Code of Conduct
+bash
+composer install
+Configure o ambiente:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Copie o arquivo .env.example para .env
 
-## Security Vulnerabilities
+Edite o arquivo .env com as configurações do seu banco de dados:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+text
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1 (ou IP do seu servidor MySQL)
+DB_PORT=3306
+DB_DATABASE=nome_do_banco
+DB_USERNAME=usuario_do_banco
+DB_PASSWORD=senha_do_banco (deixe em branco se não houver senha)
+Gere a chave da aplicação:
 
-## License
+bash
+php artisan key:generate
+Execute as migrations e seeders:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+bash
+php artisan migrate --seed
+(Opcional) Instale as dependências frontend:
+
+bash
+npm install && npm run dev
+Executando o Projeto
+Para iniciar o servidor de desenvolvimento:
+
+bash
+php artisan serve
+O sistema estará disponível em: http://localhost:8000
+
+Estrutura do Banco de Dados
+O sistema utiliza as seguintes tabelas principais:
+
+products - Armazena os produtos
+
+variations - Variações dos produtos
+
+stocks - Controle de estoque
+
+coupons - Cupons de desconto
+
+orders - Pedidos realizados
+
+Configurações Adicionais
+Variáveis de Ambiente Importantes
+Além da configuração do banco de dados, você pode ajustar:
+
+text
+APP_NAME=Montink
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+Configuração de E-mail (opcional)
+Para funcionalidades de notificação, configure no .env:
+
+text
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="noreply@montink.com"
+MAIL_FROM_NAME="Montink"
+Comandos Úteis
+Gerar link simbólico para storage:
+
+bash
+php artisan storage:link
+Limpar cache:
+
+bash
+php artisan cache:clear
+php artisan view:clear
+php artisan route:clear
+php artisan config:clear
